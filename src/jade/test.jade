@@ -1,15 +1,4 @@
-doctype html
-html
-  head
-    meta(charset="utf-8")
-    title mocha test
-    style!=mochaCssSource
-    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
-    script!=mochaJsSource
-    script.
-      mocha.setup('bdd')
-      $(function () {
-        mocha.run();
-      });
-  body
-    #mocha
+extends layout/TestLayout
+    
+block TestCodeBlock
+  script(src=http_path+"js/lockMockTest.js")

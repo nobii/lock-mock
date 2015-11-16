@@ -5,6 +5,8 @@
   "dependencies": {
     "html5shiv": "3.7.*",
     "jquery": "1.11.*",
-    "reset-css": "2.0.*"
+    "reset-css": "2.0.*",
+    "chai": "3.4.*",
+    "mocha": "2.3.*"
   }
 }
