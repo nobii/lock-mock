@@ -11,6 +11,9 @@ var awspublish = require('gulp-awspublish');
 var rename = require('gulp-rename');
 var notify = require('gulp-notify');
 
+var async = require('async');
+var request = require('request');
+
 var util = require('./task-util');
 
 
@@ -102,16 +105,42 @@ gulp.task('js', ['copy-lib', 'compile-js']);
 
 // html
 gulp.task('jade', function () {
+    var ROOT_URL = 'http://raw.github.com/visionmedia/mocha/master/';
+    var JS_URL = ROOT_URL + 'mocha.js';
+    var CSS_URL = ROOT_URL + 'mocha.css';
+
     var locals = loadLocals();
     locals.SNSHelper = require(SRC_JADE_HELPER + '/SNSHelper');
+    
+    async.parallel([
+        function (cb) {
+            request(JS_URL,function (err, res, body) {
+                locals.mochaJsSource = body;
+                cb(err);
+            });
+        },
+        function (cb) {
+            request(CSS_URL,function (err, res, body) {
+                locals.mochaCssSource = body;
+                cb(err);
+            });
+        }
+    ], function (err) {
+        if (err) {
+            throw new Error(err);
+            return;
+        }
+        gulp.src(SRC_JADE + '/*.jade')
+            .pipe(jade({
+                locals: locals,
+                pretty: true
+            }))
+            .on('error', onError)
+            .pipe(gulp.dest(DEST_HTML));
+    });
+    
+    
 
-    gulp.src(SRC_JADE + '/*.jade')
-        .pipe(jade({
-            locals: locals,
-            pretty: true
-        }))
-        .on('error', onError)
-        .pipe(gulp.dest(DEST_HTML));
 });
 
 gulp.task('html', ['jade']);
