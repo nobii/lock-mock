@@ -13,8 +13,7 @@
     "start": "gulp server",
     "build": "gulp",
     "watch": "gulp watch",
-    "publish": "gulp publish",
-    "test": "mocha"
+    "publish": "gulp publish"
   },
   "devDependencies": {
     "chai": "~1.6.1",
