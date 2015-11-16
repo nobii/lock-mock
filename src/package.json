@@ -1,6 +1,6 @@
 {
   "name": "lock-mock",
-  "description": "The best project ever.",
+  "description": "mocha & chai browser test showcase.",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -16,7 +16,6 @@
     "publish": "gulp publish"
   },
   "devDependencies": {
-    "chai": "~1.6.1",
     "gulp": "3.*",
     "gulp-awspublish": "2.0.*",
     "gulp-jade": "1.*",
@@ -26,7 +25,6 @@
     "gulp-ruby-sass": "1.0.0",
     "js-yaml": "3.*",
     "koko": "0.*",
-    "mocha": "~1.9.0",
     "varline": "1.1.*",
     "vinyl-source-stream": "1.1.0"
   }
