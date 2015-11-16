@@ -13,7 +13,8 @@
     "start": "gulp server",
     "build": "gulp",
     "watch": "gulp watch",
-    "publish": "gulp publish"
+    "publish": "gulp publish",
+    "test": "mocha"
   },
   "devDependencies": {
     "mocha": "~1.9.0",
